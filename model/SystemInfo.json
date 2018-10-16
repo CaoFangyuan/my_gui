@@ -1,0 +1,22 @@
+{
+"PI":"2.5",
+"Sensor":[
+    {"ID":"Sensor-1","Battery":"100","State":"unconnected"},
+    {"ID":"Sensor-2","Battery":"80","State":"unconnected"},
+    {"ID":"Sensor-3","Battery":"100","State":"connected"},
+    {"ID":"Sensor-4","Battery":"80","State":"unconnected"},
+    {"ID":"Sensor-5","Battery":"100","State":"connected"},
+    {"ID":"Sensor-6","Battery":"80","State":"unconnected"},
+    {"ID":"Sensor-7","Battery":"100","State":"unconnected"},
+    {"ID":"Sensor-8","Battery":"80","State":"unconnected"}
+    ],
+
+"Feedback":[ 
+    {"ID":"Motor-1","Battery":"100","State":"connected"},
+    {"ID":"Motor-2","Battery":"80","State":"unconnected"},
+    {"ID":"Motor-3","Battery":"1","State":"connected"},
+    {"ID":"Motor-4","Battery":"20","State":"unconnected"}
+    ],
+"Battery":"50","State":"connected"
+		
+}
