@@ -36,13 +36,13 @@ class SageMainController(QMainWindow):
         #self.form.Delete.clicked.connect(self.deleteData)
         self.form.Refresh.clicked.connect(self.refreshData)
         model.ssh_engine.exesensordirector()
-        model.ssh_engine.RasToGui(model.ssh_engine.SAGE_HOME + 'src/modules/dpm/common/TrialInfo.json', model.ssh_engine.SAGE + 'model/')
+        model.ssh_engine.RasToGui(model.ssh_engine.SAGE_HOME + 'common/TrialInfo.json', model.ssh_engine.SAGE + 'model/')
         filename = model.ssh_engine.SAGE+'model/TrialInfo.json'
         systeminfo = model.ssh_engine.SAGE+'model/SystemInfo.json'
         
         # Set system infomation 
-        with open(systeminfo,'r') as f_2:
-            data=json.load(f_2)
+        #with open(systeminfo,'r') as f_2:
+            #data=json.load(f_2)
         #self.refreshSystemInfo(data)
         #self.refreshThread = RefreshThread()
         #self.refreshThread._signal.connect(self.refreshSystemInfo)
@@ -79,10 +79,10 @@ class SageMainController(QMainWindow):
 
     #Select "TS"(defalt) to change to TS config page   
     def changeToTS(self):
-        para={'Mode':self.form.Mode.currentText()}
+        '''para={'Mode':self.form.Mode.currentText()}
         filename='para.json'
         with open(filename,'w') as f:
-            json.dump(para,f)
+            json.dump(para,f)'''
         TSConfig = controller.TSConfig_mainwindow.TSConfig_Controller() 
         TSConfig.run_TSConfig()
         
@@ -105,10 +105,10 @@ class SageMainController(QMainWindow):
         elif self.form.Mode.currentText()=="足偏角":
             self.form.YES.clicked.disconnect()
             self.form.YES.clicked.connect(change_FPA)
-        para={'Mode':self.form.Mode.currentText()}
+        '''para={'Mode':self.form.Mode.currentText()}
         filename='para.json'
         with open(filename,'w') as f:
-            json.dump(para,f)
+            json.dump(para,f)'''
 
     def deleteData(self):
 

@@ -129,32 +129,33 @@ class TSConfig_Controller(QDialog):
     #o write configure parameter to .py file and send to Raspberry Pi, execute program on Raspberry pi     
     def writeAndSentTXT(self):
 		#write to json file
-        filename='para.json'
+        filename='para.py'
         if self.form.Feedback_Direc.currentText()=="Anterior-Posterior (A/P)":
-            
-            para={'Feedback_direc':str(self.form.Feedback_Direc.currentIndex()),'Front':self.form.Front.text(),'Back':self.form.Back.text()}
             with open(filename,'a') as f:
-                json.dump(para,f)   
+                f.write('Feedback_direc=0\n')
+                f.write('Front='+self.form.Front.text()+'\n')   
+                f.write('Back='+self.form.Back.text()+'\n')   
            
         elif self.form.Feedback_Direc.currentText()=="Medial-Lateral (M/L)":
-            
-            para={'Feedback_direc':str(self.form.Feedback_Direc.currentIndex()),'Left':self.form.Left.text(),'Right':self.form.Right.text()}
             with open(filename,'a') as f:
-                json.dump(para,f) 
+                f.write('Feedback_direc=1\n')
+                f.write('Left='+self.form.Left.text()+'\n')   
+                f.write('Right='+self.form.Right.text()+'\n') 
         else:
-           
-            para={'Feedback_direc':str(self.form.Feedback_Direc.currentIndex()),'Left':self.form.Left.text(),'Right':self.form.Right.text(),'Front':self.form.Front.text(),'Back':self.form.Back.text()}
             with open(filename,'a') as f:
-                json.dump(para,f)
+                f.write('Feedback_direc=2\n')
+                f.write('Front='+self.form.Front.text()+'\n')   
+                f.write('Back='+self.form.Back.text()+'\n')
+                f.write('Left='+self.form.Left.text()+'\n')   
+                f.write('Right='+self.form.Right.text()+'\n')
         if self.form.PD_Control.isChecked():
             para={'PD':self.form.D_Parameter.text()}
             with open(filename,'a') as f:
-                json.dump(para,f)
+                f.write('pd='+self.form.D_Parameter.text()+'\n')   
            
         else:
-            para={'PD':str(0)}
             with open(filename,'a') as f:
-                json.dump(para,f)
+                f.write('pd=0\n')
         
         # Save current setting
         self.settings.setValue("right", self.form.Right.text())
@@ -165,7 +166,7 @@ class TSConfig_Controller(QDialog):
         self.settings.setValue("pd_control", self.form.PD_Control.isChecked())
         self.settings.setValue("feedback_dirct",self.form.Feedback_Direc.currentIndex())
         # send config file to raspberry pi
-        model.ssh_engine.GuiToRas("./para.json",model.ssh_engine.SAGE_HOME+"src/modules/dpm/ts/")
+        model.ssh_engine.GuiToRas("./para.py",model.ssh_engine.SAGE_HOME+'common/')
         Config_success=controller.Config_mainwindow.config_success() 
         Config_success.run_config()
         

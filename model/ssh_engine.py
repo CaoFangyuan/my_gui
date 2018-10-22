@@ -15,9 +15,9 @@ host='192.168.137.1'
 username='sage'
 password='wearable17'
 # SAGE_HOME is your raspberry pi path
-SAGE_HOME='/home/sage/sage_code/rpi_embedded/'
+SAGE_HOME='/home/sage/sage_code/rpi_embedded/bin/new_sys/new-sys/'
 # SAGE is path on your computer
-SAGE='/home/liuliu/cfy/sage_gui/'
+SAGE='/home/liuliu/cfy/sage_gui/my_gui/'
 
 
 # Create SSH connect
@@ -41,7 +41,7 @@ def create_ssh(host=host, username=username, password=password):
 def exesensordirector():
     for ssh in create_ssh():
         #stdin, stdout, stderr = ssh.exec_command('cd /home/liuliu/Gitdocument/bodynet/embedded/Common/;python Generate_Table.py',get_pty=True)
-        stdin, stdout, stderr = ssh.exec_command('cd '+SAGE_HOME+'src/modules/dpm/common/;python Generate_Table.py',get_pty=True)
+        stdin, stdout, stderr = ssh.exec_command('cd '+SAGE_HOME+'common/;python Generate_Table.py',get_pty=True)
         #stdin, stdout, stderr = ssh.exec_command('mkdir name;mkdir name1')
         #stdin, stdout, stderr = ssh.exec_command('mkdir name1')
         #stdin, stdout, stderr = ssh.exec_command('sudo python sensordirector.py')
@@ -56,7 +56,7 @@ def exesensordirector():
 def DelDirectory(delFile):
     print(delFile)
     for ssh in create_ssh():
-        stdin, stdout, stderr = ssh.exec_command('cd '+SAGE_HOME+'src/modules/dpm/experiment_data/;rm -rfv '+ delFile,get_pty=True)
+        stdin, stdout, stderr = ssh.exec_command('cd '+SAGE_HOME+'experiment_data/;rm -rfv '+ delFile,get_pty=True)
         print(stderr.read())
         print(stdout.read())
         print("delete")
